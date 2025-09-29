@@ -1,11 +1,10 @@
-# Base image
+# Use official PHP devcontainer image
 FROM mcr.microsoft.com/vscode/devcontainers/php:8.1
 
-# Install MySQL
-RUN apt-get update && apt-get install -y mysql-server
+# Install MySQL and required tools
+RUN apt-get update && \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y mysql-server mysql-client && \
+    apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Expose MySQL default port
-EXPOSE 3306
-
-# Start MySQL server in the background
-CMD service mysql start && tail -f /dev/null
+# Start MySQL on container start
+CMD ["bash", "-c", "service mysql start && tail -f /dev/null"]
