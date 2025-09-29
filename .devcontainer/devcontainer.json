@@ -1,0 +1,16 @@
+{
+  "name": "PHP + MySQL Dev Environment",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "settings": {
+    "php.validate.executablePath": "/usr/bin/php"
+  },
+  "forwardPorts": [80, 3306],
+  "postCreateCommand": "service mysql start",
+  "extensions": [
+    "bmewburn.vscode-intelephense-client",
+    "xdebug.php-debug",
+    "ms-azuretools.vscode-docker"
+  ]
+}
